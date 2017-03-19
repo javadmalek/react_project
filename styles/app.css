@@ -26,3 +26,7 @@
 .shop-card p {
   color: #999;
 }
+
+.ant-tag {
+  margin-bottom: 8px;
+}

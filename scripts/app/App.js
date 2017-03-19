@@ -13,10 +13,22 @@ export default class App extends Component {
     {
         super(props);
         this.state ={
-            products : DataFromFile
+            products : DataFromFile,
+            orders : [],
         }
+
+        this.add2Card = this.add2Card.bind(this);
     }
 
+    add2Card(index)
+    {
+        console.log(index);
+        if(this.state.products[index].available && this.state.orders.indexOf(index) == -1)
+        {
+            this.state.orders.push(index);
+            this.setState((prvState) => { orders : prvState.orders } );
+        }
+    }
 
   render()
   {
@@ -25,7 +37,7 @@ export default class App extends Component {
           <Col span={15}>
               <Header SelectedMenu="home" />
               <Welcome title="Javad Malek Shahkoohi" />
-              <Products products={this.state.products} />
+              <Products products={this.state.products}  add2Card={this.add2Card} orders={this.state.orders} />
           </Col>
         </Row>
       );

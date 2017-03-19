@@ -26,7 +26,7 @@ export default class Products extends Component
     {
         return (
             <Col key={key} span={8}>
-                <ProductItem detailes={this.props.products[key]} />
+                <ProductItem index={key} details={this.props.products[key]}  add2Card={this.props.add2Card}  orders={this.props.orders} />
             </Col>
         );
     }

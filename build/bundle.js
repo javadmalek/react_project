@@ -125350,12 +125350,26 @@ var App = function (_Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            products: _data2.default
+            products: _data2.default,
+            orders: []
         };
+
+        _this.add2Card = _this.add2Card.bind(_this);
         return _this;
     }
 
     _createClass(App, [{
+        key: 'add2Card',
+        value: function add2Card(index) {
+            console.log(index);
+            if (this.state.products[index].available && this.state.orders.indexOf(index) == -1) {
+                this.state.orders.push(index);
+                this.setState(function (prvState) {
+                    orders: prvState.orders;
+                });
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -125366,7 +125380,7 @@ var App = function (_Component) {
                     { span: 15 },
                     _react2.default.createElement(_Header2.default, { SelectedMenu: 'home' }),
                     _react2.default.createElement(_Welcome2.default, { title: 'Javad Malek Shahkoohi' }),
-                    _react2.default.createElement(_Products2.default, { products: this.state.products })
+                    _react2.default.createElement(_Products2.default, { products: this.state.products, add2Card: this.add2Card, orders: this.state.orders })
                 )
             );
         }
@@ -125604,7 +125618,10 @@ var ProductItem = function (_Component) {
     _createClass(ProductItem, [{
         key: 'render',
         value: function render() {
-            var detailes = this.props.detailes;
+            var _this2 = this;
+
+            var details = this.props.details;
+            var StyleBuy = details.available && this.props.orders.indexOf(this.props.index) == -1 ? '' : { cursor: 'not-allowed', backgroundColor: '#999' };
 
             return _react2.default.createElement(
                 _antd.Card,
@@ -125612,7 +125629,7 @@ var ProductItem = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'custom-image' },
-                    _react2.default.createElement('img', { alt: 'example', width: '100%', src: detailes.image })
+                    _react2.default.createElement('img', { alt: 'example', width: '100%', src: details.image })
                 ),
                 _react2.default.createElement(
                     'div',
@@ -125620,12 +125637,29 @@ var ProductItem = function (_Component) {
                     _react2.default.createElement(
                         'h3',
                         null,
-                        detailes.title
+                        details.title
                     ),
                     _react2.default.createElement(
                         'p',
                         null,
-                        detailes.description
+                        details.description
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { style: { padding: '0px 16px 10px' } },
+                    _react2.default.createElement(
+                        _antd.Tag,
+                        { color: '#87d068' },
+                        details.price,
+                        '$'
+                    ),
+                    _react2.default.createElement(
+                        _antd.Tag,
+                        { color: '#108ee9', style: StyleBuy, onClick: function onClick() {
+                                return _this2.props.add2Card(_this2.props.index);
+                            } },
+                        'Add to card'
                     )
                 )
             );
@@ -125693,7 +125727,7 @@ var Products = function (_Component) {
             return _react2.default.createElement(
                 _antd.Col,
                 { key: key, span: 8 },
-                _react2.default.createElement(_ProductItem2.default, { detailes: this.props.products[key] })
+                _react2.default.createElement(_ProductItem2.default, { index: key, details: this.props.products[key], add2Card: this.props.add2Card, orders: this.props.orders })
             );
         }
     }, {

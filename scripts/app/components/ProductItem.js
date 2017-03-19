@@ -7,6 +7,8 @@ import { Card, Tag } from 'antd';
 
 
 
+
+
 export default class ProductItem extends Component
 {
     constructor(props)
@@ -16,16 +18,22 @@ export default class ProductItem extends Component
 
     render()
     {
-        let detailes = this.props.detailes;
+        let details = this.props.details;
+        let StyleBuy = ( details.available && this.props.orders.indexOf(this.props.index) == -1 ) ? ''
+                        : { cursor : 'not-allowed', backgroundColor:'#999' }
 
         return (
             <Card style={{ margin:'auto 15px 25px' }} bodyStyle={{ padding: 0 }}>
                 <div className="custom-image">
-                    <img alt="example" width="100%" src={ detailes.image } />
+                    <img alt="example" width="100%" src={ details.image } />
                 </div>
                 <div className="shop-card">
-                    <h3>{ detailes.title }</h3>
-                    <p>{ detailes.description }</p>
+                    <h3>{ details.title }</h3>
+                    <p>{ details.description }</p>
+                </div>
+                <div style={{ padding: '0px 16px 10px' }}>
+                    <Tag color="#87d068">{ details.price }$</Tag>
+                    <Tag color="#108ee9" style={StyleBuy} onClick={ () => this.props.add2Card(this.props.index) }>Add to card</Tag>
                 </div>
             </Card>
         );
