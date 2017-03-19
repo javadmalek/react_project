@@ -125306,7 +125306,7 @@ arguments[4][600][0].apply(exports,arguments)
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -125317,13 +125317,21 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antd = require('antd');
 
-var _Header = require('./views/Header');
+var _data = require('./src/data');
+
+var _data2 = _interopRequireDefault(_data);
+
+var _Header = require('./components/Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Welcome = require('./views/Welcome');
+var _Welcome = require('./components/Welcome');
 
 var _Welcome2 = _interopRequireDefault(_Welcome);
+
+var _Products = require('./components/Products');
+
+var _Products2 = _interopRequireDefault(_Products);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -125334,158 +125342,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_Component) {
-  _inherits(App, _Component);
+    _inherits(App, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+    function App(props) {
+        _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-  }
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _antd.Row,
-        { type: 'flex', justify: 'center' },
-        _react2.default.createElement(
-          _antd.Col,
-          { span: 12 },
-          _react2.default.createElement(_Header2.default, { SelectedMenu: 'home' }),
-          _react2.default.createElement(_Welcome2.default, { title: 'Javad Malek Shahkoohi' })
-        )
-      );
+        _this.state = {
+            products: _data2.default
+        };
+        return _this;
     }
-  }]);
 
-  return App;
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _antd.Row,
+                { type: 'flex', justify: 'center' },
+                _react2.default.createElement(
+                    _antd.Col,
+                    { span: 15 },
+                    _react2.default.createElement(_Header2.default, { SelectedMenu: 'home' }),
+                    _react2.default.createElement(_Welcome2.default, { title: 'Javad Malek Shahkoohi' }),
+                    _react2.default.createElement(_Products2.default, { products: this.state.products })
+                )
+            );
+        }
+    }]);
+
+    return App;
 }(_react.Component);
 
 exports.default = App;
 
-},{"./views/Header":888,"./views/Welcome":889,"antd":55,"react":877}],885:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _antd = require('antd');
-
-var _Header = require('../views/Header');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var _Welcome = require('../views/Welcome');
-
-var _Welcome2 = _interopRequireDefault(_Welcome);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var About = function (_Component) {
-  _inherits(About, _Component);
-
-  function About() {
-    _classCallCheck(this, About);
-
-    return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
-  }
-
-  _createClass(About, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _antd.Row,
-        { type: 'flex', justify: 'center' },
-        _react2.default.createElement(
-          _antd.Col,
-          { span: 12 },
-          _react2.default.createElement(_Header2.default, { SelectedMenu: 'about' }),
-          _react2.default.createElement(_Welcome2.default, { title: 'Welcome To Javad Malek Shahkoohi About page' })
-        )
-      );
-    }
-  }]);
-
-  return About;
-}(_react.Component);
-
-exports.default = About;
-
-},{"../views/Header":888,"../views/Welcome":889,"antd":55,"react":877}],886:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _antd = require('antd');
-
-var _Header = require('../views/Header');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var _Contact = require('../views/Contact');
-
-var _Contact2 = _interopRequireDefault(_Contact);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ContactMe = function (_Component) {
-  _inherits(ContactMe, _Component);
-
-  function ContactMe() {
-    _classCallCheck(this, ContactMe);
-
-    return _possibleConstructorReturn(this, (ContactMe.__proto__ || Object.getPrototypeOf(ContactMe)).apply(this, arguments));
-  }
-
-  _createClass(ContactMe, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _antd.Row,
-        { type: 'flex', justify: 'center' },
-        _react2.default.createElement(
-          _antd.Col,
-          { span: 12 },
-          _react2.default.createElement(_Header2.default, { SelectedMenu: 'morepage:contactme' }),
-          _react2.default.createElement(_Contact2.default, { title: 'You can connect and that would my pleasure.' })
-        )
-      );
-    }
-  }]);
-
-  return ContactMe;
-}(_react.Component);
-
-exports.default = ContactMe;
-
-},{"../views/Contact":887,"../views/Header":888,"antd":55,"react":877}],887:[function(require,module,exports){
+},{"./components/Header":886,"./components/Products":888,"./components/Welcome":889,"./src/data":892,"antd":55,"react":877}],885:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125548,7 +125440,7 @@ var Contact = function (_Component) {
 
 exports.default = Contact;
 
-},{"antd":55,"react":877}],888:[function(require,module,exports){
+},{"antd":55,"react":877}],886:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125675,7 +125567,170 @@ var Header = function (_Component) {
 
 exports.default = Header;
 
-},{"antd":55,"react":877,"react-router":835}],889:[function(require,module,exports){
+},{"antd":55,"react":877,"react-router":835}],887:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by Javad Malek Shahkoohi on 3/18/2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var ProductItem = function (_Component) {
+    _inherits(ProductItem, _Component);
+
+    function ProductItem(props) {
+        _classCallCheck(this, ProductItem);
+
+        return _possibleConstructorReturn(this, (ProductItem.__proto__ || Object.getPrototypeOf(ProductItem)).call(this, props));
+    }
+
+    _createClass(ProductItem, [{
+        key: 'render',
+        value: function render() {
+            var detailes = this.props.detailes;
+
+            return _react2.default.createElement(
+                _antd.Card,
+                { style: { margin: 'auto 15px 25px' }, bodyStyle: { padding: 0 } },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'custom-image' },
+                    _react2.default.createElement('img', { alt: 'example', width: '100%', src: detailes.image })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'shop-card' },
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        detailes.title
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        detailes.description
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ProductItem;
+}(_react.Component);
+
+exports.default = ProductItem;
+
+},{"antd":55,"react":877}],888:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+var _reactRouter = require('react-router');
+
+var _helper = require('./../src/helper');
+
+var _helper2 = _interopRequireDefault(_helper);
+
+var _ProductItem = require('./ProductItem');
+
+var _ProductItem2 = _interopRequireDefault(_ProductItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by Javad Malek Shahkoohi on 3/18/2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var Products = function (_Component) {
+    _inherits(Products, _Component);
+
+    function Products(props) {
+        _classCallCheck(this, Products);
+
+        var _this = _possibleConstructorReturn(this, (Products.__proto__ || Object.getPrototypeOf(Products)).call(this, props));
+
+        _this.renderRow = _this.renderRow.bind(_this);
+        _this.render1Product = _this.render1Product.bind(_this);
+
+        _this.chunkOf3Products = _helper2.default.array_chunk(Object.keys(_this.props.products), 3);
+        return _this;
+    }
+
+    _createClass(Products, [{
+        key: 'render1Product',
+        value: function render1Product(key) {
+            return _react2.default.createElement(
+                _antd.Col,
+                { key: key, span: 8 },
+                _react2.default.createElement(_ProductItem2.default, { detailes: this.props.products[key] })
+            );
+        }
+    }, {
+        key: 'renderRow',
+        value: function renderRow(key) {
+            return _react2.default.createElement(
+                _antd.Row,
+                { key: key },
+                this.chunkOf3Products[key].map(this.render1Product)
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log(this.chunkOf3Products);
+            return _react2.default.createElement(
+                _antd.Row,
+                null,
+                _react2.default.createElement(
+                    _antd.Col,
+                    { span: 24 },
+                    _react2.default.createElement(
+                        _antd.Row,
+                        { className: 'row-product' },
+                        Object.keys(this.chunkOf3Products).map(this.renderRow)
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Products;
+}(_react.Component);
+
+exports.default = Products;
+
+},{"./../src/helper":893,"./ProductItem":887,"antd":55,"react":877,"react-router":835}],889:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125739,6 +125794,255 @@ exports.default = Welcome;
 },{"antd":55,"react":877}],890:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+var _Header = require('../components/Header');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Welcome = require('../components/Welcome');
+
+var _Welcome2 = _interopRequireDefault(_Welcome);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var About = function (_Component) {
+  _inherits(About, _Component);
+
+  function About() {
+    _classCallCheck(this, About);
+
+    return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+  }
+
+  _createClass(About, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _antd.Row,
+        { type: 'flex', justify: 'center' },
+        _react2.default.createElement(
+          _antd.Col,
+          { span: 12 },
+          _react2.default.createElement(_Header2.default, { SelectedMenu: 'about' }),
+          _react2.default.createElement(_Welcome2.default, { title: 'Welcome To Javad Malek Shahkoohi About page' })
+        )
+      );
+    }
+  }]);
+
+  return About;
+}(_react.Component);
+
+exports.default = About;
+
+},{"../components/Header":886,"../components/Welcome":889,"antd":55,"react":877}],891:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+var _Header = require('../components/Header');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Contact = require('../components/Contact');
+
+var _Contact2 = _interopRequireDefault(_Contact);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ContactMe = function (_Component) {
+  _inherits(ContactMe, _Component);
+
+  function ContactMe() {
+    _classCallCheck(this, ContactMe);
+
+    return _possibleConstructorReturn(this, (ContactMe.__proto__ || Object.getPrototypeOf(ContactMe)).apply(this, arguments));
+  }
+
+  _createClass(ContactMe, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _antd.Row,
+        { type: 'flex', justify: 'center' },
+        _react2.default.createElement(
+          _antd.Col,
+          { span: 12 },
+          _react2.default.createElement(_Header2.default, { SelectedMenu: 'morepage:contactme' }),
+          _react2.default.createElement(_Contact2.default, { title: 'You can connect and that would my pleasure.' })
+        )
+      );
+    }
+  }]);
+
+  return ContactMe;
+}(_react.Component);
+
+exports.default = ContactMe;
+
+},{"../components/Contact":885,"../components/Header":886,"antd":55,"react":877}],892:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  product1: {
+    title: 'Laravel Tutorial',
+    slug: 'laravel-tutorial',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/1/30/meet-laravel-cover-1.png',
+    price: 200,
+    available: true
+  },
+  product2: {
+    title: 'Sass Tutorial',
+    slug: 'sass-tutorial',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/8/24/sass-cover-2.png',
+    price: 400,
+    available: true
+  },
+  product3: {
+    title: 'Learn Web Design',
+    slug: 'learn-web-design',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/11/11/b7etda5c.jpg',
+    price: 150,
+    available: true
+  },
+  product4: {
+    title: 'Full Training Flexbox',
+    slug: 'full-training-flexbox',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/10/19/flexbox-cover-1.png',
+    price: 350,
+    available: true
+  },
+  product5: {
+    title: 'Learning Javascript',
+    slug: 'learning-javascript',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/6/24/javascript-cover-1.png',
+    price: 900,
+    available: false
+  },
+  product6: {
+    title: 'Learning PHP',
+    slug: 'learning-php',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    image: 'http://roocket.ir/public/image/2016/7/3/phh-cover-1.png',
+    price: 800,
+    available: true
+  }
+};
+
+},{}],893:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var helper = {
+  array_chunk: function array_chunk(input, size, preserveKeys) {
+    // eslint-disable-line camelcase
+    //  discuss at: http://locutus.io/php/array_chunk/
+    // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+    // improved by: Brett Zamir (http://brett-zamir.me)
+    //      note 1: Important note: Per the ECMAScript specification,
+    //      note 1: objects may not always iterate in a predictable order
+    //   example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2)
+    //   returns 1: [['Kevin', 'van'], ['Zonneveld']]
+    //   example 2: array_chunk(['Kevin', 'van', 'Zonneveld'], 2, true)
+    //   returns 2: [{0:'Kevin', 1:'van'}, {2: 'Zonneveld'}]
+    //   example 3: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2)
+    //   returns 3: [['Kevin', 'van'], ['Zonneveld']]
+    //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true)
+    //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
+
+    var x;
+    var p = '';
+    var i = 0;
+    var c = -1;
+    var l = input.length || 0;
+    var n = [];
+
+    if (size < 1) {
+      return null;
+    }
+
+    if (Object.prototype.toString.call(input) === '[object Array]') {
+      if (preserveKeys) {
+        while (i < l) {
+          (x = i % size) ? n[c][i] = input[i] : n[++c] = {};n[c][i] = input[i];
+          i++;
+        }
+      } else {
+        while (i < l) {
+          (x = i % size) ? n[c][x] = input[i] : n[++c] = [input[i]];
+          i++;
+        }
+      }
+    } else {
+      if (preserveKeys) {
+        for (p in input) {
+          if (input.hasOwnProperty(p)) {
+            (x = i % size) ? n[c][p] = input[p] : n[++c] = {};n[c][p] = input[p];
+            i++;
+          }
+        }
+      } else {
+        for (p in input) {
+          if (input.hasOwnProperty(p)) {
+            (x = i % size) ? n[c][x] = input[p] : n[++c] = [input[p]];
+            i++;
+          }
+        }
+      }
+    }
+
+    return n;
+  }
+};
+
+exports.default = helper;
+
+},{}],894:[function(require,module,exports){
+'use strict';
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -125775,4 +126079,4 @@ var routes = _react2.default.createElement(
 
 _reactDom2.default.render(routes, document.getElementById('app'));
 
-},{"./app/App":884,"./app/pages/About":885,"./app/pages/ContactMe":886,"history":445,"react":877,"react-dom":677,"react-router":835}]},{},[890]);
+},{"./app/App":884,"./app/pages/About":890,"./app/pages/ContactMe":891,"history":445,"react":877,"react-dom":677,"react-router":835}]},{},[894]);

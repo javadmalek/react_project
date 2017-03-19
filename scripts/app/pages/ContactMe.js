@@ -2,8 +2,8 @@ import React , {Component} from 'react'
 import { Row , Col } from 'antd';
 
 
-import Header from '../views/Header';
-import Contact from '../views/Contact';
+import Header from '../components/Header';
+import Contact from '../components/Contact';
 
 export default class ContactMe extends Component {
 

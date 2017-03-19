@@ -2,8 +2,8 @@ import React , {Component} from 'react'
 import { Row , Col } from 'antd';
 
 
-import Header from '../views/Header';
-import Welcome from '../views/Welcome';
+import Header from '../components/Header';
+import Welcome from '../components/Welcome';
 
 export default class About extends Component {
 
