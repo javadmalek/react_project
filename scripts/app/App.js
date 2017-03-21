@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import { Row , Col } from 'antd';
+import Cookie from 'react-cookie';
 
 import DataFromFile from './src/data'
 
@@ -14,7 +15,7 @@ export default class App extends Component {
         super(props);
         this.state ={
             products : DataFromFile,
-            orders : [],
+            orders : ( typeof(Cookie.load('orders')) == "undefined" ? [] : Cookie.load('orders') ),
         }
 
         this.add2Card = this.add2Card.bind(this);
@@ -26,6 +27,8 @@ export default class App extends Component {
         if(this.state.products[index].available && this.state.orders.indexOf(index) == -1)
         {
             this.state.orders.push(index);
+            Cookie.save('orders', this.state.orders,{ path : '/' });
+
             this.setState((prvState) => { orders : prvState.orders } );
         }
     }

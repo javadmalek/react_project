@@ -10,7 +10,7 @@ import helper from './../src/helper';
 import ProductItem from './ProductItem';
 
 
-export default class Products extends Component
+class Products extends Component
 {
     constructor(props){
         super(props);
@@ -54,3 +54,11 @@ export default class Products extends Component
         )
     }
 }
+
+
+Products.propTypes = {
+    add2Card : React.PropTypes.func.isRequired,
+    orders : React.PropTypes.array.isRequired,
+    products : React.PropTypes.object
+}
+export default Products;
