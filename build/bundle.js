@@ -125688,6 +125688,10 @@ var _Products = require('./components/Products');
 
 var _Products2 = _interopRequireDefault(_Products);
 
+var _ButtonCard = require('./components/ButtonCard');
+
+var _ButtonCard2 = _interopRequireDefault(_ButtonCard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -125710,6 +125714,7 @@ var App = function (_Component) {
         };
 
         _this.add2Card = _this.add2Card.bind(_this);
+        _this.removeOfCard = _this.removeOfCard.bind(_this);
         return _this;
     }
 
@@ -125727,6 +125732,21 @@ var App = function (_Component) {
             }
         }
     }, {
+        key: 'removeOfCard',
+        value: function removeOfCard(index) {
+            var productKey = this.state.orders[index.key];
+            var i = this.state.orders.indexOf(productKey);
+
+            if (i != -1) // if it exits
+                {
+                    this.state.orders.splice(i, 1);
+                    _reactCookie2.default.save('orders', this.state.orders, { path: '/' });
+                    this.setState(function (prvState) {
+                        orders: prvState.orders;
+                    });
+                }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -125738,7 +125758,8 @@ var App = function (_Component) {
                     _react2.default.createElement(_Header2.default, { SelectedMenu: 'home' }),
                     _react2.default.createElement(_Welcome2.default, { title: 'Javad Malek Shahkoohi' }),
                     _react2.default.createElement(_Products2.default, { products: this.state.products, add2Card: this.add2Card, orders: this.state.orders })
-                )
+                ),
+                _react2.default.createElement(_ButtonCard2.default, { products: this.state.products, removeOfCard: this.removeOfCard, orders: this.state.orders })
             );
         }
     }]);
@@ -125748,7 +125769,97 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"./components/Header":888,"./components/Products":890,"./components/Welcome":891,"./src/data":894,"antd":55,"react":879,"react-cookie":678}],887:[function(require,module,exports){
+},{"./components/ButtonCard":887,"./components/Header":889,"./components/Products":891,"./components/Welcome":892,"./src/data":895,"antd":55,"react":879,"react-cookie":678}],887:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by Javad Malek Shahkoohi on 3/20/2017.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var ButtnCard = function (_Component) {
+    _inherits(ButtnCard, _Component);
+
+    function ButtnCard(props) {
+        _classCallCheck(this, ButtnCard);
+
+        var _this = _possibleConstructorReturn(this, (ButtnCard.__proto__ || Object.getPrototypeOf(ButtnCard)).call(this, props));
+
+        _this.renderMenu = _this.renderMenu.bind(_this);
+        return _this;
+    }
+
+    // handleMenuClick(e)
+    // {
+    //     console.log('click', e);
+    // }
+
+    _createClass(ButtnCard, [{
+        key: 'renderMenu',
+        value: function renderMenu(index) {
+            console.log(this.props.orders[index]);
+            return _react2.default.createElement(
+                _antd.Menu.Item,
+                { key: index },
+                _react2.default.createElement(_antd.Icon, { type: 'close', className: 'remove-card' }),
+                this.props.products[this.props.orders[index]].title
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            // console.log(this.props.products);
+
+            var menu = _react2.default.createElement(
+                _antd.Menu,
+                { onClick: function onClick(key) {
+                        return _this2.props.removeOfCard(key);
+                    } },
+                Object.keys(this.props.orders).map(this.renderMenu)
+            );
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'card-button' },
+                _react2.default.createElement(
+                    _antd.Dropdown,
+                    { overlay: menu },
+                    _react2.default.createElement(
+                        _antd.Button,
+                        { type: 'primary', style: { marginLeft: 8 } },
+                        'Your Card ',
+                        _react2.default.createElement(_antd.Icon, { type: 'shopping-cart' })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ButtnCard;
+}(_react.Component);
+
+exports.default = ButtnCard;
+
+},{"antd":55,"react":879}],888:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125811,7 +125922,7 @@ var Contact = function (_Component) {
 
 exports.default = Contact;
 
-},{"antd":55,"react":879}],888:[function(require,module,exports){
+},{"antd":55,"react":879}],889:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125938,7 +126049,7 @@ var Header = function (_Component) {
 
 exports.default = Header;
 
-},{"antd":55,"react":879,"react-router":837}],889:[function(require,module,exports){
+},{"antd":55,"react":879,"react-router":837}],890:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -125980,6 +126091,9 @@ var ProductItem = function (_Component) {
             var details = this.props.details;
             var StyleBuy = details.available && this.props.orders.indexOf(this.props.index) == -1 ? '' : { cursor: 'not-allowed', backgroundColor: '#999' };
 
+            var TextDispaly = 'Add to card';
+            if (!details.available) TextDispaly = 'Not Available';else if (this.props.orders.indexOf(this.props.index) != -1) TextDispaly = 'Already added';
+
             return _react2.default.createElement(
                 _antd.Card,
                 { style: { margin: 'auto 15px 25px' }, bodyStyle: { padding: 0 } },
@@ -126016,7 +126130,7 @@ var ProductItem = function (_Component) {
                         { color: '#108ee9', style: StyleBuy, onClick: function onClick() {
                                 return _this2.props.add2Card(_this2.props.index);
                             } },
-                        'Add to card'
+                        TextDispaly
                     )
                 )
             );
@@ -126028,7 +126142,7 @@ var ProductItem = function (_Component) {
 
 exports.default = ProductItem;
 
-},{"antd":55,"react":879}],890:[function(require,module,exports){
+},{"antd":55,"react":879}],891:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126126,7 +126240,7 @@ Products.propTypes = {
 };
 exports.default = Products;
 
-},{"./../src/helper":895,"./ProductItem":889,"antd":55,"react":879,"react-router":837}],891:[function(require,module,exports){
+},{"./../src/helper":896,"./ProductItem":890,"antd":55,"react":879,"react-router":837}],892:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126187,7 +126301,7 @@ var Welcome = function (_Component) {
 
 exports.default = Welcome;
 
-},{"antd":55,"react":879}],892:[function(require,module,exports){
+},{"antd":55,"react":879}],893:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126248,7 +126362,7 @@ var About = function (_Component) {
 
 exports.default = About;
 
-},{"../components/Header":888,"../components/Welcome":891,"antd":55,"react":879}],893:[function(require,module,exports){
+},{"../components/Header":889,"../components/Welcome":892,"antd":55,"react":879}],894:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126309,7 +126423,7 @@ var ContactMe = function (_Component) {
 
 exports.default = ContactMe;
 
-},{"../components/Contact":887,"../components/Header":888,"antd":55,"react":879}],894:[function(require,module,exports){
+},{"../components/Contact":888,"../components/Header":889,"antd":55,"react":879}],895:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126366,7 +126480,7 @@ exports.default = {
   }
 };
 
-},{}],895:[function(require,module,exports){
+},{}],896:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126436,7 +126550,7 @@ var helper = {
 
 exports.default = helper;
 
-},{}],896:[function(require,module,exports){
+},{}],897:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -126475,4 +126589,4 @@ var routes = _react2.default.createElement(
 
 _reactDom2.default.render(routes, document.getElementById('app'));
 
-},{"./app/App":886,"./app/pages/About":892,"./app/pages/ContactMe":893,"history":446,"react":879,"react-dom":679,"react-router":837}]},{},[896]);
+},{"./app/App":886,"./app/pages/About":893,"./app/pages/ContactMe":894,"history":446,"react":879,"react-dom":679,"react-router":837}]},{},[897]);

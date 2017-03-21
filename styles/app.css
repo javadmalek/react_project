@@ -26,7 +26,20 @@
 .shop-card p {
   color: #999;
 }
-
 .ant-tag {
   margin-bottom: 8px;
+}
+
+.shop-card{
+  padding: 10px 16px;
+}
+.card-button{
+  position : fixed;
+  bottom: 30px;
+  right : 30px;
+}
+
+.remove-card
+{
+  margin : 5px;
 }
