@@ -1,15 +1,17 @@
 import React , {Component} from 'react'
 import { Row , Col } from 'antd';
 import Cookie from 'react-cookie';
+import Mixin from 'react-mixin';
 
 import DataFromFile from './src/data'
+import Mixins from './src/mixins'
 
 import Header from './components/Header';
 import Welcome from './components/Welcome';
 import Products from './components/Products';
 import ButtonCard from './components/ButtonCard';
 
-export default class App extends Component {
+class App extends Component {
 
     constructor(props) {
         super(props);
@@ -20,6 +22,8 @@ export default class App extends Component {
 
         this.add2Card = this.add2Card.bind(this);
         this.removeOfCard= this.removeOfCard.bind(this);
+
+        this.success('Mxins message');
     }
 
     add2Card(index) {
@@ -63,3 +67,8 @@ export default class App extends Component {
     }
 
 }
+
+
+
+Mixin.onClass(App, Mixins.Logs );
+export default App;
