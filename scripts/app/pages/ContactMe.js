@@ -1,24 +1,49 @@
 import React , {Component} from 'react'
-import { Row , Col, Button } from 'antd';
-
+import { Row , Col, Button , Form, Input} from 'antd';
+const FormItem = Form.Item;
 
 import Header from '../components/Header';
 import Contact from '../components/Contact';
 
 export default class ContactMe extends Component {
 
-    hanndleSubmit(e)
+    constructor (props)
     {
-        e.preventDefault();
+        super(props);
 
-        let FormData= {
-            txtbxname : this.refs.txtbxname.value,
-            txtbxemail : this.refs.txtbxemail.value,
-            txtbxmsg : this.refs.txtbxmsg.value
+        this.state = {
+
+            FormData :{
+                txtbxname  : '',
+                txtbxemail  : '',
+                txtbxmsg  : '',
+            }
+
         }
-        console.log(FormData);
+
+        this.HanndleSubmit = this.HanndleSubmit.bind(this);
+        this.HandleChange = this.HandleChange.bind(this);
     }
 
+    HanndleSubmit(event)
+    {
+        event.preventDefault();
+        console.log(this.state.FormData);
+    }
+
+    HandleChange(event)
+    {
+        const target = event.target;
+        const inputname = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+
+        this.state.FormData[inputname] = value;
+        console.log(this.state.FormData[inputname]);
+        this.setState((prevState) => {
+            FormData : prevState.FormData
+        })
+
+    }
 
   render() {
       return (
@@ -31,50 +56,25 @@ export default class ContactMe extends Component {
               <Row type="flex" justify="center">
                   <Col span={12}>
                       <h2>Contact Form</h2>
-                      <form onSubmit={this.hanndleSubmit.bind(this)} >
+                      <Form onSubmit={this.HanndleSubmit} >
 
-                          <div className="ant-row ant-form-item">
-                              <div className="ant-form-item-label">
-                                  <label className="">Name</label>
-                              </div>
-                              <div className="">
-                                  <div className="ant-form-item-control">
-                                      <input type="text" name="txtbxname" placeholder="Please enter your name" ref="txtbxname" className="ant-input ant-input-lg" />
-                                  </div>
-                              </div>
-                          </div>
+                          <FormItem label="Name">
+                              <Input type="text" name="txtbxname" placeholder="Please enter your name" value={this.state.FormData.txtbxname} onChange={ this.HandleChange}  />
+                          </FormItem>
 
-                          <div className="ant-row ant-form-item">
-                              <div className="ant-form-item-label">
-                                  <label className="">Email</label>
-                              </div>
-                              <div className="">
-                                  <div className="ant-form-item-control">
-                                      <input type="text" name="txtbxemail" placeholder="Please enter your e-mail address" ref="txtbxemail" className="ant-input ant-input-lg" />
-                                  </div>
-                              </div>
-                          </div>
+                          <FormItem label="E-mail">
+                              <Input type="email" name="txtbxemail" placeholder="Please enter your name"  value={this.state.FormData.txtbxemail} onChange={ this.HandleChange}   />
+                          </FormItem>
 
-                          <div className="ant-row ant-form-item">
-                              <div className="ant-form-item-label">
-                                  <label className="">Message</label>
-                              </div>
-                              <div className="">
-                                  <div className="ant-form-item-control">
-                                      <textarea  name="txtbxmsg" placeholder="Please enter your message" ref="txtbxmsg" className="ant-input ant-input-lg"></textarea>
-                                  </div>
-                              </div>
-                          </div>
+                          <FormItem label="message">
+                              <Input name="txtbxmsg" placeholder="Please enter your name"  value={this.state.FormData.txtbxmsg} onChange={ this.HandleChange}  />
+                          </FormItem>
 
-                          <div className="ant-row ant-form-item">
-                              <div className="">
-                                  <div className="ant-form-item-control">
-                                      <Button type="primary" htmlType="submit">Send</Button>
-                                  </div>
-                              </div>
-                          </div>
+                          <FormItem >
+                              <Button type="primary" htmlType="submit">Send</Button>
+                          </FormItem>
 
-                      </form>
+                      </Form>
                   </Col>
               </Row>
 
